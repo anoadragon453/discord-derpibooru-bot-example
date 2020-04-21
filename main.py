@@ -62,11 +62,12 @@ async def on_message(message):
     # You can instead make each item a separate argument for a total of 3
     # some_function("twilight", "applejack", "rarity")
     for image in derpi_search_client.query(*tags):
-        # The image url is stored in a mapping from representing various
+        # The image url is stored in a mapping from various
         # image size names to their download url.
-        # We use large here, which is big but not the full url
-        # The full list is at https://derpibooru.org/pages/api#image-response
+        # We use "large" here, which is big but not the full size
+        # The list of sizes is at https://derpibooru.org/pages/api#image-response
         # under "representations"
+        #
         # Once we have the URL, we can use requests.get() to download the
         # image itself. We don't save this image to disk. Instead, we store
         # it in a variable, and then send the contents of that variable to
@@ -83,7 +84,7 @@ async def on_message(message):
         #
         # Since images uploaded to derpibooru don't always have a filename
         # ending in one of these, we use some variables from the image object
-        # instead.
+        # to create a filename instead.
         #
         # str() converts an int/number (and a lot of other things) into a
         # str (string). We need to do this as you can't combine an int and a str,
@@ -91,7 +92,7 @@ async def on_message(message):
         filename = str(image.id) + "." + image.format
 
         # Oh, and we need to wrap our image data in a BytesIO object, which is
-        # basically just an object that you can easily get parts of a file from
+        # basically just an object that you can easily get parts of a file from.
         # discord.py wants it for whatever reason
         file = BytesIO(image_data)
 
