@@ -1,0 +1,6 @@
+# Virtualenvs
+venv/
+env
+
+# IDE files
+.idea/
